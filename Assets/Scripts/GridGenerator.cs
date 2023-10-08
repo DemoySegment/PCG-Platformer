@@ -6,7 +6,12 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     public GameObject blockGameObject;
-   // public Transform jumpPads;
+    // public Transform jumpPads;
+
+    // Define parameters for Perlin noise
+    public float perlinScale = 0.1f;
+    public float minHeight = 0.5f;
+    public float maxHeight = 100.0f;
     private List<GameObject> blocks = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -15,13 +20,11 @@ public class GridGenerator : MonoBehaviour
 
 
         Bounds bounds = GetComponent<Collider>().bounds;
+        Random.InitState(System.DateTime.Now.Millisecond); // Set a new seed based on the current time
 
-        // Define parameters for Perlin noise
-        float perlinScale = 0.1f;
-        float minHeight = 0.5f;
-        float maxHeight = 100.0f;
 
-        for (int i = 0; i < 50; i++)
+
+        for (int i = 0; i < 30; i++)
         {
             // Generate random positions within the bounds
             float offsetX = Random.Range(-bounds.extents.x, bounds.extents.x);
@@ -60,9 +63,5 @@ public class GridGenerator : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 }

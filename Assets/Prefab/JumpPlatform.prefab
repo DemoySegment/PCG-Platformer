@@ -142,6 +142,7 @@ MonoBehaviour:
   leftBoundary: 0
   rightBoundary: 10
   spawnPoint: {x: 0, y: 0, z: 0}
+  play: {fileID: 1195032524402651470, guid: ab265c3b4be58ff4c83733d31c14cd73, type: 3}
 --- !u!54 &7719854742487217860
 Rigidbody:
   m_ObjectHideFlags: 0
