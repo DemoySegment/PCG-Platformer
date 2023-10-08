@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1409567549025135618}
   - component: {fileID: 5647710982264101760}
   - component: {fileID: 5070827473671514573}
+  - component: {fileID: 2883167710513143005}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -106,9 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b953fefde68135d41b9b2a6eb6529b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed: 20
   gravity: -19.62
-  jumpHeight: 3
+  jumpHeight: 15
   groundCheck: {fileID: 6592694688347577183}
   groundDistance: 0.4
   groundMask:
@@ -131,6 +132,33 @@ MonoBehaviour:
   topClamp: -90
   bottomClamp: 82
   Camera: {fileID: 5064731392440936844}
+--- !u!54 &2883167710513143005
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195032524402651470}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &2032153888533345411
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +556,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6552578623617003486}
     - target: {fileID: 8743927900599837647, guid: 3f29914b413904d40a89e972f348ebd8, type: 3}
+      propertyPath: playerRb
+      value: 
+      objectReference: {fileID: 2883167710513143005}
+    - target: {fileID: 8743927900599837647, guid: 3f29914b413904d40a89e972f348ebd8, type: 3}
       propertyPath: spineBone
       value: 
       objectReference: {fileID: 3839759674679548657}
@@ -547,6 +579,10 @@ PrefabInstance:
       propertyPath: nonAimingPosition
       value: 
       objectReference: {fileID: 4848440936997787446}
+    - target: {fileID: 9171070566221193531, guid: 3f29914b413904d40a89e972f348ebd8, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4441026798619053909, guid: 3f29914b413904d40a89e972f348ebd8, type: 3}
     m_RemovedGameObjects: []

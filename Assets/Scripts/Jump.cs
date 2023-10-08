@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Jump : MonoBehaviour
 {
 
-    public bool isJumpable;
+    public bool isJumpable =false;
     bool playerOnPlatform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,8 @@ public class Jump : MonoBehaviour
             if (playerOnPlatform == true)
             {
 
-
+                Debug.Log("Activating thurst");
+               Destroy(gameObject);
 
             }
         }
@@ -34,4 +37,12 @@ public class Jump : MonoBehaviour
             playerOnPlatform = true;
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        playerOnPlatform = false;
+    }
+
+  
+
 }
