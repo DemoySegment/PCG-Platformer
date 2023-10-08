@@ -46,11 +46,7 @@ public class MouseController : MonoBehaviour
         
         transform.localRotation = Quaternion.Euler(0f, yNew, 0f);
         Camera.transform.localRotation = Quaternion.Euler(xNew, 0f, 0f);
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 47a322d2ad3fbdb64f2c37253ac3af50301a5585
         xRotation = xNew;
         yRotation = yNew;
             
