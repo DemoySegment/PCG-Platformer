@@ -17,6 +17,8 @@ public class MouseController : MonoBehaviour
 
     [SerializeField]
     private GameObject Camera;
+    [SerializeField]
+    private GameObject ModelUpperBody;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +48,13 @@ public class MouseController : MonoBehaviour
         
         transform.localRotation = Quaternion.Euler(0f, yNew, 0f);
         Camera.transform.localRotation = Quaternion.Euler(xNew, 0f, 0f);
+        ModelUpperBody.transform.localRotation = Quaternion.Euler(xNew, 0f, 0f);
 
         xRotation = xNew;
         yRotation = yNew;
-            
-            
+
+        
+
+
     }
 }
