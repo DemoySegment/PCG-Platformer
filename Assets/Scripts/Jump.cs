@@ -13,7 +13,6 @@ public class Jump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -23,8 +22,8 @@ public class Jump : MonoBehaviour
             if (playerOnPlatform == true)
             {
 
-                Debug.Log("Activating thurst");
-                player.GetComponent<PlayerController>().isHover = true;
+/*                Debug.Log("Activating thurst");
+*/                player.GetComponent<PlayerController>().isHover = true;
                 StartCoroutine(jumpActivate());
             }
         }
@@ -43,10 +42,9 @@ public class Jump : MonoBehaviour
                player = collision.gameObject;
 
             player.GetComponent<PlayerController>().isHover = false;
-
-
-
         }
+
+        
     }
 
     private void OnCollisionExit(Collision collision)
