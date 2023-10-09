@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    
+    void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Bullet")){
+            Destroy(other.gameObject);
+            PublicVars.score += 5;
+            print(PublicVars.score);
+            Destroy(gameObject);
+            }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
