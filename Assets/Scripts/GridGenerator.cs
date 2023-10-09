@@ -87,10 +87,14 @@ public class GridGenerator : MonoBehaviour
     public float maxHeight = 100.0f;
     public int num_blocks = 5;
     public int num_jump_blocks = 2; // Assuming you want a certain number of jumpable blocks.
+    public Bounds bounds;
     private List<GameObject> blocks = new List<GameObject>();
+    public bool playerOnFloor;
+    public GameObject player;
 
     void Start()
     {
+
         Random.InitState(System.DateTime.Now.Millisecond);
 
         for (int i = 0; i < num_blocks; i++)
@@ -118,7 +122,7 @@ public class GridGenerator : MonoBehaviour
 
     void GeneratePlatform()
     {
-        Bounds bounds = GetComponent<Collider>().bounds;
+         bounds = GetComponent<Collider>().bounds;
 
         float offsetX = Random.Range(-bounds.extents.x, bounds.extents.x);
         float offsetZ = Random.Range(-bounds.extents.z, bounds.extents.z);
@@ -138,8 +142,15 @@ public class GridGenerator : MonoBehaviour
             float platformHeight = Mathf.Lerp(minHeight, maxHeight, heightValue);
             platformPosition.y = platformHeight;
         }
-       
 
+        if (playerOnFloor && blocks.Count!=0)
+        {
+            platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
+            platformPosition.y = 1f;
+            platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x + 1, bounds.max.x - 1);
+            platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z + 1, bounds.max.z - 1);
+            Debug.Log("Here");
+        }
         GameObject platform = GameObject.Instantiate(blockGameObject, platformPosition, Quaternion.identity) as GameObject;
         blocks.Add(platform);
     }
@@ -151,11 +162,26 @@ public class GridGenerator : MonoBehaviour
         {
             StartCoroutine(GenerateDelayedPlat());
         }
+        //needs fixing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (player.transform.position.y < 9)
+        {
+            playerOnFloor = true;
+        }
+        else
+        {
+            playerOnFloor = false;
+        }
     }
-
+/*
+    public void getFloorCollisionStatus(bool status)
+    {
+        playerOnFloor = status;
+    }*/
     IEnumerator GenerateDelayedPlat()
     {
         yield return new WaitForSeconds(2f);
         GeneratePlatform();
     }
+
+ 
 }
