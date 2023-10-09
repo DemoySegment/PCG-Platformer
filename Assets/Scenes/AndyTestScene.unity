@@ -745,6 +745,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockGameObject: {fileID: 1458593731533441023, guid: ae66f28524c3f9c419015ada09d05154, type: 3}
+  perlinScale: 0.1
+  minHeight: 0.5
+  maxHeight: 100
+  num_blocks: 5
+  num_jump_blocks: 2
 --- !u!1 &1573100720
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +855,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockGameObject: {fileID: 1458593731533441023, guid: ae66f28524c3f9c419015ada09d05154, type: 3}
+  perlinScale: 0.1
+  minHeight: 0.5
+  maxHeight: 100
+  num_blocks: 5
+  num_jump_blocks: 2
 --- !u!4 &1582019791
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +885,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1300724180471757811, guid: ae66f28524c3f9c419015ada09d05154, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 76.008
+      value: 90.5
       objectReference: {fileID: 0}
     - target: {fileID: 1300724180471757811, guid: ae66f28524c3f9c419015ada09d05154, type: 3}
       propertyPath: m_LocalPosition.y
