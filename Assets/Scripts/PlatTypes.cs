@@ -54,7 +54,7 @@ public class PlatTypes : MonoBehaviour
     
     void OnCollisionEnter(Collision other){
         Collider collider = other.collider;
-        print(type);
+       // print(type);
         if(other.gameObject.CompareTag("Player")){
             if(type == 1){
                 print("hit");
@@ -67,7 +67,7 @@ public class PlatTypes : MonoBehaviour
                 print("SpawnEnemy");
             }
             if(type == 4){
-                print("Horizontal");
+               // print("Horizontal");
                 play.transform.parent.parent = transform;
             }
             if(type == 5){

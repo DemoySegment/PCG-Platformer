@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public bool isHover;
+    public float floatingAmplitude = 0.1f; // Adjust this value to control the floating height
+    public float floatingFrequency = 2f;  // Adjust this value to control the speed of the floating motion
+    public float jumpForce;
 
     Vector3 velocity;
 
@@ -51,17 +55,36 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             //actually jumping
-            velocity.y = Mathf.Sqrt (jumpHeight * -2f * gravity);
+            if (isHover)
+            {
+                velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+
+            }
+            else
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            }
         }
 
         //falling down
+        if (isHover)
+        {
+           velocity.y += (gravity * Time.deltaTime * floatingFrequency) * floatingAmplitude  ;   
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
 
-        velocity.y += gravity*Time.deltaTime;
+        }
 
         //executing the jump
-         characterController.Move(velocity * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
 
-
+        if(Input.GetButtonDown("Jump") &&  !isGrounded) 
+        {
+            isHover = false;
+        }
         if(lastPosition != gameObject.transform.position && isGrounded == true)
         {
             isMoving = true;

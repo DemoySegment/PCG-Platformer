@@ -128,8 +128,8 @@ public class GridGenerator : MonoBehaviour
         {
             platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
             platformPosition.y = 1f;
-            platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x, bounds.max.x);
-            platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z, bounds.max.z);
+            platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x+1, bounds.max.x-1);
+            platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z+1, bounds.max.z-1);
         }
         else
         {
@@ -146,7 +146,7 @@ public class GridGenerator : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Number of Active Jump Pads: "+blocks.Count);
+        //Debug.Log("Number of Active Jump Pads: "+blocks.Count);
         if (blocks.Count < num_blocks)
         {
             StartCoroutine(GenerateDelayedPlat());
