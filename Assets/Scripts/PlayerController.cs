@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -70,7 +71,11 @@ public class PlayerController : MonoBehaviour
         //falling down
         if (isHover)
         {
-           velocity.y += (gravity * Time.deltaTime * floatingFrequency) * floatingAmplitude  ;   
+           velocity.y += (gravity * Time.deltaTime * floatingFrequency) * floatingAmplitude  ;
+            if (gameObject.transform.position.y > 90)
+            {
+                velocity.y += gravity * Time.deltaTime;
+            }
         }
         else
         {
@@ -80,6 +85,8 @@ public class PlayerController : MonoBehaviour
 
         //executing the jump
         characterController.Move(velocity * Time.deltaTime);
+
+   
 
         if(Input.GetButtonDown("Jump") &&  !isGrounded) 
         {
@@ -95,5 +102,9 @@ public class PlayerController : MonoBehaviour
         }
 
         lastPosition = gameObject.transform.position;
+
+
     }
+
+  
 }
