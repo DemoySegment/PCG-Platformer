@@ -16,6 +16,9 @@ public class GridGenerator : MonoBehaviour
     public GameObject player;
     public GameObject removeBlock;
     public FloorDetection floorDetector;
+
+    public GameObject Target;
+    public int num_Targets;
     void Start()
     {
 
@@ -27,16 +30,34 @@ public class GridGenerator : MonoBehaviour
         }
 
         // Set jumpable flag for a specified number of blocks
-        for (int i = 0; i < num_jump_blocks-1; i++)
+        for (int i = 0; i < num_jump_blocks - 1; i++)
         {
             int randomIndex = Random.Range(1, blocks.Count);
-            if(blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
+            if (blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
             {
                 blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
             }
             else
             {
                 randomIndex = Random.Range(1, blocks.Count);
+                blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
+
+            }
+        }
+
+        for (int i = 0; i < num_Targets; i++)
+        {
+            int randomIndex = Random.Range(1, blocks.Count);
+
+            if (blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
+            {
+                blocks[randomIndex].GetComponent<Jump>().isTarget = true;
+            }
+            else
+            {
+                randomIndex = Random.Range(1, blocks.Count);
+                blocks[randomIndex].GetComponent<Jump>().isTarget = true;
+
             }
         }
 
@@ -46,18 +67,18 @@ public class GridGenerator : MonoBehaviour
 
     void GeneratePlatform()
     {
-         bounds = GetComponent<Collider>().bounds;
+        bounds = GetComponent<Collider>().bounds;
 
         float offsetX = Random.Range(-bounds.extents.x, bounds.extents.x);
         float offsetZ = Random.Range(-bounds.extents.z, bounds.extents.z);
-       
+
         Vector3 platformPosition;
-        if (blocks.Count ==0)
+        if (blocks.Count == 0)
         {
             platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
             platformPosition.y = 3f;
-            platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x+1, bounds.max.x-1);
-            platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z+1, bounds.max.z-1);
+            platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x + 1, bounds.max.x - 1);
+            platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z + 1, bounds.max.z - 1);
         }
         else
         {
@@ -67,14 +88,14 @@ public class GridGenerator : MonoBehaviour
             platformPosition.y = platformHeight;
         }
 
-       /* if (playerOnFloor && blocks.Count!=0)
-        {
-            platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
-            platformPosition.y = 1f;
-            platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x + 1, bounds.max.x - 1);
-            platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z + 1, bounds.max.z - 1);
-            Debug.Log("Here");
-        }*/
+        /* if (playerOnFloor && blocks.Count!=0)
+         {
+             platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
+             platformPosition.y = 1f;
+             platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x + 1, bounds.max.x - 1);
+             platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z + 1, bounds.max.z - 1);
+             Debug.Log("Here");
+         }*/
         GameObject platform = GameObject.Instantiate(blockGameObject, platformPosition, Quaternion.identity) as GameObject;
         blocks.Add(platform);
     }
@@ -88,9 +109,9 @@ public class GridGenerator : MonoBehaviour
         }*/
         if (blocks.Contains(removeBlock))
         {
-            if(removeBlock != null)
+            if (removeBlock != null)
             {
-                if(removeBlock.name == "InitalPad")
+                if (removeBlock.name == "InitalPad")
                 {
                     floorDetector.gameOverTrigger = true;
 
@@ -100,21 +121,28 @@ public class GridGenerator : MonoBehaviour
             {
                 blocks.Remove(removeBlock);
                 GeneratePlatform();
+                int rand = Random.Range(0, 2);
+                if (rand == 0)
+                {
+                    blocks[^1].GetComponent<Jump>().isJumpable = true;
+                    blocks[^1].GetComponent<Jump>().isTarget = false;
+
+
+                }
+                else if (rand == 1)
+                {
+
+                    blocks[^1].GetComponent<Jump>().isJumpable = false;
+                    blocks[^1].GetComponent<Jump>().isTarget = true;
+                }
+
             }
+
            
         }
 
-        if (playerOnFloor)
-        {
-            Debug.Log("PlayerOnFloor");
-        }
-    }
+     
 
-    IEnumerator GenerateDelayedPlat()
-    {
-        yield return new WaitForSeconds(2f);
-        GeneratePlatform();
-    }
 
- 
+    }
 }

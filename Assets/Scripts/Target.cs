@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    
+    private void Update()
+    {
+        transform.Rotate(Vector3.forward, 20 * Time.deltaTime);
+    }
+
     void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Bullet")){
             Destroy(other.gameObject);

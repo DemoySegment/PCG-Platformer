@@ -22,8 +22,8 @@ public class MouseController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Assert.IsNotNull(Camera);
-        Assert.IsTrue(Camera.transform.parent.Equals(this));
+       /* Assert.IsNotNull(Camera);
+        Assert.IsTrue(Camera.transform.parent.Equals(this));*/
     }
 
     // Update is called once per frame

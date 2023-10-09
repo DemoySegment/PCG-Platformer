@@ -726,6 +726,8 @@ MonoBehaviour:
   player: {fileID: 1029231245}
   removeBlock: {fileID: 0}
   floorDetector: {fileID: 2102295626}
+  Target: {fileID: 7238523253340217597, guid: b4cb62c38bb5b324f85515bdbd0b26d2, type: 3}
+  num_Targets: 5
 --- !u!1 &1573100720
 GameObject:
   m_ObjectHideFlags: 0

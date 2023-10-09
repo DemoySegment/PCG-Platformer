@@ -7,11 +7,13 @@ public class Jump : MonoBehaviour
 {
 
     public bool isJumpable =false;
-   
+    public bool isTarget =false;
     bool playerOnPlatform;
     public GameObject player;
 
     public GridGenerator generator;
+
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,11 @@ public class Jump : MonoBehaviour
 */                player.GetComponent<PlayerController>().isHover = true;
                 StartCoroutine(jumpActivate());
             }
+        }
+        if(isTarget == true)
+        {
+            target.SetActive(true);
+
         }
 
 
