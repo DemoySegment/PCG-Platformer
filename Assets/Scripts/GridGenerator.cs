@@ -1,80 +1,3 @@
-/*using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-
-public class GridGenerator : MonoBehaviour
-{
-    public GameObject blockGameObject;
-    // public Transform jumpPads;
-
-    // Define parameters for Perlin noise
-    public float perlinScale = 0.1f;
-    public float minHeight = 0.5f;
-    public float maxHeight = 100.0f;
-    public int num_blocks =5;
-    private List<GameObject> blocks = new();
-    // Start is called before the first frame update
-    void Start()
-    {
-      
-
-
-        Bounds bounds = GetComponent<Collider>().bounds;
-        Random.InitState(System.DateTime.Now.Millisecond); // Set a new seed based on the current time
-
-
-
-        for (int i = 0; i < num_blocks; i++)
-        {
-            // Generate random positions within the bounds
-            float offsetX = Random.Range(-bounds.extents.x, bounds.extents.x);
-            float offsetZ = Random.Range(-bounds.extents.z, bounds.extents.z);
-            Vector3 platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
-
-            // Use Perlin noise for vertical height
-            float heightValue = Mathf.PerlinNoise(platformPosition.x * perlinScale, platformPosition.z * perlinScale);
-            float platformHeight = Mathf.Lerp(minHeight, maxHeight, heightValue);
-            platformPosition.y = platformHeight;
-
-            // Instantiate and position the platform
-            GameObject platform =  GameObject.Instantiate(blockGameObject,platformPosition,Quaternion.identity) as GameObject;
-            blocks.Add(platform);
-        }
-
-        int prevRand=0;
-
-        for (int i = 0;i<25;i++)
-        {
-            int rand = Random.Range(0, blocks.Count - 1);
-
-            if (prevRand != rand)
-            {
-                Debug.Log("prevRand: "+ prevRand);
-                Debug.Log("rand: "+rand);
-                blocks[rand].GetComponent<Jump>().isJumpable = true;
-
-            }
-            prevRand = rand;
-        }
-        int jCount = 0;
-        for(int i =0; i<blocks.Count;i++)
-        {
-            
-            if (blocks[i].GetComponent<Jump>().isJumpable == true)
-            {
-                jCount++;
-            }
-            //Debug.Log(jCount);
-        }
-
-    }
-
-
-}*/
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -91,7 +14,8 @@ public class GridGenerator : MonoBehaviour
     private List<GameObject> blocks = new List<GameObject>();
     public bool playerOnFloor;
     public GameObject player;
-
+    public GameObject removeBlock;
+    public FloorDetection floorDetector;
     void Start()
     {
 
@@ -131,7 +55,7 @@ public class GridGenerator : MonoBehaviour
         if (blocks.Count ==0)
         {
             platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
-            platformPosition.y = 1f;
+            platformPosition.y = 3f;
             platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x+1, bounds.max.x-1);
             platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z+1, bounds.max.z-1);
         }
@@ -143,14 +67,14 @@ public class GridGenerator : MonoBehaviour
             platformPosition.y = platformHeight;
         }
 
-        if (playerOnFloor && blocks.Count!=0)
+       /* if (playerOnFloor && blocks.Count!=0)
         {
             platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
             platformPosition.y = 1f;
             platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x + 1, bounds.max.x - 1);
             platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z + 1, bounds.max.z - 1);
             Debug.Log("Here");
-        }
+        }*/
         GameObject platform = GameObject.Instantiate(blockGameObject, platformPosition, Quaternion.identity) as GameObject;
         blocks.Add(platform);
     }
@@ -158,25 +82,34 @@ public class GridGenerator : MonoBehaviour
     private void Update()
     {
         //Debug.Log("Number of Active Jump Pads: "+blocks.Count);
-        if (blocks.Count < num_blocks)
+        /*if (blocks.Count < num_blocks)
         {
             StartCoroutine(GenerateDelayedPlat());
-        }
-        //needs fixing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (player.transform.position.y < 9)
+        }*/
+        if (blocks.Contains(removeBlock))
         {
-            playerOnFloor = true;
+            if(removeBlock != null)
+            {
+                if(removeBlock.name == "InitalPad")
+                {
+                    floorDetector.gameOverTrigger = true;
+
+                }
+            }
+            else
+            {
+                blocks.Remove(removeBlock);
+                GeneratePlatform();
+            }
+           
         }
-        else
+
+        if (playerOnFloor)
         {
-            playerOnFloor = false;
+            Debug.Log("PlayerOnFloor");
         }
     }
-/*
-    public void getFloorCollisionStatus(bool status)
-    {
-        playerOnFloor = status;
-    }*/
+
     IEnumerator GenerateDelayedPlat()
     {
         yield return new WaitForSeconds(2f);

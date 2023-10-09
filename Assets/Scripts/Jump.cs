@@ -10,9 +10,12 @@ public class Jump : MonoBehaviour
    
     bool playerOnPlatform;
     public GameObject player;
+
+    public GridGenerator generator;
     // Start is called before the first frame update
     void Start()
     {
+        generator= GameObject.FindGameObjectWithTag("Floor").GetComponentInParent<GridGenerator>();
     }
 
     // Update is called once per frame
@@ -54,10 +57,10 @@ public class Jump : MonoBehaviour
 
   IEnumerator jumpActivate()
     {
-     
-    
-    yield return new WaitForSeconds(1f);
-       
+
+        generator.removeBlock = gameObject;
+
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 

@@ -57,7 +57,7 @@ public class PlatTypes : MonoBehaviour
        // print(type);
         if(other.gameObject.CompareTag("Player")){
             if(type == 1){
-                print("hit");
+               // print("hit");
             }
             if(type == 2){
                 print("ReverseGrav");
@@ -68,20 +68,20 @@ public class PlatTypes : MonoBehaviour
             }
             if(type == 4){
                // print("Horizontal");
-                play.transform.parent.parent = transform;
+                //play.transform.parent.parent = transform;
             }
             if(type == 5){
                 print("Vertical");
-                other.gameObject.transform.parent.parent = transform;
+                //other.gameObject.transform.parent.parent = transform;
             }
             
         }
         }
 
     void OnCollisionExit(Collision other){
-        if(other.gameObject.CompareTag("Player")){
+        /*if(other.gameObject.CompareTag("Player")){
             play.transform.parent.parent = null;
-        }
+        }*/
     }
     
     IEnumerator RevGrav(){

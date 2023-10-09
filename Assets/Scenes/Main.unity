@@ -724,6 +724,8 @@ MonoBehaviour:
     m_Extent: {x: 0, y: 0, z: 0}
   playerOnFloor: 0
   player: {fileID: 1029231245}
+  removeBlock: {fileID: 0}
+  floorDetector: {fileID: 2102295626}
 --- !u!1 &1573100720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,7 +1008,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7758180275203968035, guid: d89c29fc215fe794e80efda3978c5357, type: 3}
   m_PrefabInstance: {fileID: 7242015477586938029}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2102295622
+--- !u!114 &2102295626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1015,10 +1017,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1414164601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff8642fa9855dc42b76779bad5f4b18, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d8b726961dac414d98b045fec4ce3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridObj: {fileID: 1423532981}
+  gameOverTrigger: 0
 --- !u!1 &2128705543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1318,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 953185062134553910, guid: d89c29fc215fe794e80efda3978c5357, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2102295622}
+      addedObject: {fileID: 2102295626}
   m_SourcePrefab: {fileID: 100100000, guid: d89c29fc215fe794e80efda3978c5357, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
