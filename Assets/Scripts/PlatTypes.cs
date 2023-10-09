@@ -33,7 +33,7 @@ public class PlatTypes : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         var _Rdr = GetComponent<Renderer>();
         //type = Random.Range(1,5);
-        type = 4;
+        type = 1;
         
         if(type == 1){
             _Rdr.material = type1;
