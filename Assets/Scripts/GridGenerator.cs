@@ -37,47 +37,58 @@ public class GridGenerator : MonoBehaviour
         // Set jumpable flag for a specified number of blocks
         for (int i = 0; i < num_jump_blocks - 1; i++)
         {
-            int randomIndex = Random.Range(1, blocks.Count);
-            if (blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
+            int randomIndex = Random.Range(0, blocks.Count);
+            if (!blocks[randomIndex].GetComponent<Jump>().isTarget)
             {
                 blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
-                blocks[randomIndex].GetComponent <PlatTypes>().type = 5;
+                blocks[randomIndex].GetComponent<PlatTypes>().type = 5;
             }
             else
             {
-                randomIndex = Random.Range(1, blocks.Count);
-                blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
-                blocks[randomIndex].GetComponent<PlatTypes>().type = 5;
-
+                i--; // Retry this iteration to get a different random index
             }
         }
 
         for (int i = 0; i < num_Targets; i++)
         {
-            int randomIndex = Random.Range(1, blocks.Count);
+            int randomIndex = Random.Range(0, blocks.Count);
 
-            if (blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
+            if (!blocks[randomIndex].GetComponent<Jump>().isJumpable)
             {
                 blocks[randomIndex].GetComponent<Jump>().isTarget = true;
                 blocks[randomIndex].GetComponent<PlatTypes>().type = 1;
-
             }
             else
             {
-                randomIndex = Random.Range(1, blocks.Count);
-                blocks[randomIndex].GetComponent<Jump>().isTarget = true;
-                blocks[randomIndex].GetComponent<PlatTypes>().type = 1;
-
-
+                i--; // Retry this iteration to get a different random index
             }
         }
+
 
         blocks[0].GetComponent<Jump>().isJumpable = true;
         blocks[0].GetComponent<PlatTypes>().type = 5;
         blocks[0].GetComponent<PlatTypes>().initial = true;
-
-
         blocks[0].name = "InitalPad";
+
+
+        for(int i = 0; i < blocks.Count; i++)
+        {
+            if (blocks[i].GetComponent<Jump>().isJumpable ==false && blocks[i].GetComponent<Jump>().isTarget == false)
+            {
+               int j = Random.Range(0, 2);
+                if (j == 0)
+                {
+                    blocks[i].GetComponent<Jump>().isJumpable = true;
+                    blocks[i].GetComponent<PlatTypes>().type = 5;
+
+                }else if (j == 1)
+                {
+                    blocks[i].GetComponent<Jump>().isTarget = true;
+                    blocks[i].GetComponent<PlatTypes>().type = 1;
+
+                }
+            }
+        }
     }
 
     void GeneratePlatform()
@@ -103,14 +114,7 @@ public class GridGenerator : MonoBehaviour
             platformPosition.y = platformHeight;
         }
 
-        /* if (playerOnFloor && blocks.Count!=0)
-         {
-             platformPosition = bounds.center + new Vector3(offsetX, 0f, offsetZ);
-             platformPosition.y = 1f;
-             platformPosition.x = Mathf.Clamp(platformPosition.x, bounds.min.x + 1, bounds.max.x - 1);
-             platformPosition.z = Mathf.Clamp(platformPosition.z, bounds.min.z + 1, bounds.max.z - 1);
-             Debug.Log("Here");
-         }*/
+ 
         GameObject platform = GameObject.Instantiate(blockGameObject, platformPosition, Quaternion.identity) as GameObject;
         blocks.Add(platform);
     }
@@ -125,12 +129,17 @@ public class GridGenerator : MonoBehaviour
                 if (removeBlock.name == "InitalPad")
                 {
                     floorDetector.gameOverTrigger = true;
-                    floorDetector._Rdr.material = lava;
-
+                   // floorDetector._Rdr.material = lava;
+                   floorDetector.gameObject.GetComponentInParent<MeshRenderer>().enabled = false;
+                   for (int i = 0; i < GetComponentsInChildren<MeshRenderer>().Length; i++)
+                    {
+                        GetComponentsInChildren<MeshRenderer>()[i].enabled = false;
+                    }
                 }
             }
             else
             {
+                Debug.LogWarning("HERE");
                 blocks.Remove(removeBlock);
                 GeneratePlatform();
                 int rand = Random.Range(0, 2);

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
 
-    public bool isJumpable =false;
-    public bool isTarget =false;
+    public bool isJumpable ;
+    public bool isTarget ;
     bool playerOnPlatform;
     public GameObject player;
 
