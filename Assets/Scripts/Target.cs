@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    public bool targetDestroyed;
     private void Update()
     {
         transform.Rotate(Vector3.forward, 20 * Time.deltaTime);
@@ -14,8 +15,15 @@ public class Target : MonoBehaviour
             Destroy(other.gameObject);
             PublicVars.score += 5;
             print(PublicVars.score);
-            Destroy(gameObject);
-            }
+            targetDestroyed = true;
+
+
+            gameObject.SetActive(false);            
+        }
+        else
+        {
+            targetDestroyed = false;
+        }
         
     }
 

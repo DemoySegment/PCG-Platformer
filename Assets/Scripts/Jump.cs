@@ -14,6 +14,9 @@ public class Jump : MonoBehaviour
     public GridGenerator generator;
 
     public GameObject target;
+
+    public Target targetHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,15 @@ public class Jump : MonoBehaviour
         if(isTarget == true)
         {
             target.SetActive(true);
+
+        }
+
+        if(targetHandler.targetDestroyed == true)
+        {
+
+            isTarget = false;
+            target.SetActive(false);
+            StartCoroutine(jumpActivate());
 
         }
 

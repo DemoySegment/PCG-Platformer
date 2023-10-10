@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
@@ -19,6 +20,7 @@ public class GridGenerator : MonoBehaviour
 
     public GameObject Target;
     public int num_Targets;
+
     void Start()
     {
 
@@ -102,11 +104,7 @@ public class GridGenerator : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Number of Active Jump Pads: "+blocks.Count);
-        /*if (blocks.Count < num_blocks)
-        {
-            StartCoroutine(GenerateDelayedPlat());
-        }*/
+       
         if (blocks.Contains(removeBlock))
         {
             if (removeBlock != null)
@@ -141,8 +139,8 @@ public class GridGenerator : MonoBehaviour
            
         }
 
-     
-
-
+      
     }
+
+   
 }

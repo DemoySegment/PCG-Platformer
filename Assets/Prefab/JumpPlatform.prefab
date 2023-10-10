@@ -126,6 +126,7 @@ MonoBehaviour:
   player: {fileID: 1195032524402651470, guid: ab265c3b4be58ff4c83733d31c14cd73, type: 3}
   generator: {fileID: 0}
   target: {fileID: 6372667246488286500}
+  targetHandler: {fileID: 5032489783110895129}
 --- !u!114 &6084134151315961798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +254,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3153757516639569263, guid: b4cb62c38bb5b324f85515bdbd0b26d2, type: 3}
   m_PrefabInstance: {fileID: 4324622863644284377}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5032489783110895129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8778319826999792576, guid: b4cb62c38bb5b324f85515bdbd0b26d2, type: 3}
+  m_PrefabInstance: {fileID: 4324622863644284377}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372667246488286500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2added57a4fd7041a389c6a0f64c6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6372667246488286500 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7238523253340217597, guid: b4cb62c38bb5b324f85515bdbd0b26d2, type: 3}
