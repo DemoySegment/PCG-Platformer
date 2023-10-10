@@ -21,6 +21,8 @@ public class GridGenerator : MonoBehaviour
     public GameObject Target;
     public int num_Targets;
 
+    public PlatTypes typeHandle;
+
     void Start()
     {
 
@@ -38,11 +40,13 @@ public class GridGenerator : MonoBehaviour
             if (blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
             {
                 blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
+                blocks[randomIndex].GetComponent <PlatTypes>().type = 5;
             }
             else
             {
                 randomIndex = Random.Range(1, blocks.Count);
                 blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
+                blocks[randomIndex].GetComponent<PlatTypes>().type = 5;
 
             }
         }
@@ -54,16 +58,24 @@ public class GridGenerator : MonoBehaviour
             if (blocks[randomIndex].GetComponent<Jump>().isJumpable != true)
             {
                 blocks[randomIndex].GetComponent<Jump>().isTarget = true;
+                blocks[randomIndex].GetComponent<PlatTypes>().type = 1;
+
             }
             else
             {
                 randomIndex = Random.Range(1, blocks.Count);
                 blocks[randomIndex].GetComponent<Jump>().isTarget = true;
+                blocks[randomIndex].GetComponent<PlatTypes>().type = 1;
+
 
             }
         }
 
         blocks[0].GetComponent<Jump>().isJumpable = true;
+        blocks[0].GetComponent<PlatTypes>().type = 5;
+        blocks[0].GetComponent<PlatTypes>().initial = true;
+
+
         blocks[0].name = "InitalPad";
     }
 
@@ -122,6 +134,8 @@ public class GridGenerator : MonoBehaviour
                 int rand = Random.Range(0, 2);
                 if (rand == 0)
                 {
+                    blocks[^1].GetComponent<PlatTypes>().type = 5;
+
                     blocks[^1].GetComponent<Jump>().isJumpable = true;
                     blocks[^1].GetComponent<Jump>().isTarget = false;
 
@@ -129,6 +143,7 @@ public class GridGenerator : MonoBehaviour
                 }
                 else if (rand == 1)
                 {
+                    blocks[^1].GetComponent<PlatTypes>().type = 1;
 
                     blocks[^1].GetComponent<Jump>().isJumpable = false;
                     blocks[^1].GetComponent<Jump>().isTarget = true;

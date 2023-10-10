@@ -23,7 +23,9 @@ public class PlatTypes : MonoBehaviour
     
     public GameObject play;
 
-    int type;
+    public int type;
+
+    public bool initial =false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +35,8 @@ public class PlatTypes : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         var _Rdr = GetComponent<Renderer>();
         //type = Random.Range(1,5);
-        type = 1;
-        
+
+        Debug.Log("TYPE: " + type);
         if(type == 1){
             _Rdr.material = type1;
         }
@@ -93,10 +95,10 @@ public class PlatTypes : MonoBehaviour
 
     void Update()
     {
-        if(type == 4){
+        if(type == 1){
             Horizontal();
         }
-        else if(type == 5){
+        else if(type == 5 && initial!=true){
             Vertical();
         }
     }

@@ -728,6 +728,7 @@ MonoBehaviour:
   floorDetector: {fileID: 2102295626}
   Target: {fileID: 7238523253340217597, guid: b4cb62c38bb5b324f85515bdbd0b26d2, type: 3}
   num_Targets: 5
+  typeHandle: {fileID: 6084134151315961798, guid: ae66f28524c3f9c419015ada09d05154, type: 3}
 --- !u!1 &1573100720
 GameObject:
   m_ObjectHideFlags: 0
