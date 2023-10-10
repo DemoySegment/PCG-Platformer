@@ -7,7 +7,7 @@ public class Target : MonoBehaviour
     public bool targetDestroyed;
     private void Update()
     {
-        transform.Rotate(Vector3.forward, 20 * Time.deltaTime);
+        transform.Rotate(Vector3.forward, 50 * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other) {
