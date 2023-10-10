@@ -22,6 +22,7 @@ public class GridGenerator : MonoBehaviour
     public int num_Targets;
 
     public PlatTypes typeHandle;
+    public Material lava;
 
     void Start()
     {
@@ -124,6 +125,7 @@ public class GridGenerator : MonoBehaviour
                 if (removeBlock.name == "InitalPad")
                 {
                     floorDetector.gameOverTrigger = true;
+                    floorDetector._Rdr.material = lava;
 
                 }
             }

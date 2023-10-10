@@ -5,6 +5,13 @@ using UnityEngine;
 public class FloorDetection : MonoBehaviour
 {
     public bool gameOverTrigger;
+    public Material lava;
+    public Renderer _Rdr;
+
+    void Start(){
+        _Rdr = GetComponent<Renderer>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -16,4 +23,5 @@ public class FloorDetection : MonoBehaviour
             }
         }
     }
+    
 }
