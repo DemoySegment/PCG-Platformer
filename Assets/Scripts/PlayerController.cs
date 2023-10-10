@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
         lastPosition = gameObject.transform.position;
     
-        if(PublicVars.score >= 100){
+        if(PublicVars.score >= 40){
             SceneManager.LoadScene("WinScreen");
         }
     }

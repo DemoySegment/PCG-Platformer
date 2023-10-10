@@ -6,7 +6,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public bool targetDestroyed;
-    public GameObject score;
+     GameObject score;
     private void Start()
     {
         score = GameObject.FindGameObjectWithTag("Score");
@@ -14,7 +14,11 @@ public class Target : MonoBehaviour
     private void Update()
     {
         transform.Rotate(Vector3.forward, 50 * Time.deltaTime);
-        score.GetComponent<TextMeshProUGUI>().SetText(PublicVars.score.ToString());
+        if(score != null)
+        {
+            score.GetComponent<TextMeshProUGUI>().SetText(PublicVars.score.ToString());
+
+        }
     }
 
     void OnTriggerEnter(Collider other) {
