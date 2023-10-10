@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - Bullet
   - Target
+  - Score
   layers:
   - Default
   - TransparentFX

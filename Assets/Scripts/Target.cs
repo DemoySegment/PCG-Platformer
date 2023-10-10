@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Target : MonoBehaviour
 {
     public bool targetDestroyed;
+    public GameObject score;
+    private void Start()
+    {
+        score = GameObject.FindGameObjectWithTag("Score");
+    }
     private void Update()
     {
         transform.Rotate(Vector3.forward, 50 * Time.deltaTime);
+        score.GetComponent<TextMeshProUGUI>().SetText(PublicVars.score.ToString());
     }
 
     void OnTriggerEnter(Collider other) {

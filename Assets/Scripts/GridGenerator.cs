@@ -37,7 +37,7 @@ public class GridGenerator : MonoBehaviour
         // Set jumpable flag for a specified number of blocks
         for (int i = 0; i < num_jump_blocks - 1; i++)
         {
-            int randomIndex = Random.Range(0, blocks.Count);
+            int randomIndex = Random.Range(1, blocks.Count);
             if (!blocks[randomIndex].GetComponent<Jump>().isTarget)
             {
                 blocks[randomIndex].GetComponent<Jump>().isJumpable = true;
@@ -51,7 +51,7 @@ public class GridGenerator : MonoBehaviour
 
         for (int i = 0; i < num_Targets; i++)
         {
-            int randomIndex = Random.Range(0, blocks.Count);
+            int randomIndex = Random.Range(1, blocks.Count);
 
             if (!blocks[randomIndex].GetComponent<Jump>().isJumpable)
             {
@@ -139,7 +139,6 @@ public class GridGenerator : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("HERE");
                 blocks.Remove(removeBlock);
                 GeneratePlatform();
                 int rand = Random.Range(0, 2);
