@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scenes/Button.uss?fileID=7433441132597879392&amp;guid=6b2090ca017736a47bae062f8faac9da&amp;type=3#Button" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: space-between; align-self: flex-end; flex-direction: row; flex-basis: auto; align-items: flex-end; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; flex-basis: 20%; align-self: auto; align-items: center; justify-content: center; flex-shrink: 1; border-top-width: 5px; padding-top: 5%; padding-right: 15%; padding-bottom: 12%; padding-left: 15%; margin-top: 0;">
+            <ui:Label tabindex="-1" text="Undecided" display-tooltip-when-elided="true" style="height: 79px; width: 397px; font-size: 50px; -unity-font-style: bold; align-self: center; white-space: nowrap; -unity-text-align: middle-center; margin-bottom: 4px;" />
+            <ui:Button text="Start" display-tooltip-when-elided="true" name="Start" class="button" />
+            <ui:Button text="Exit" display-tooltip-when-elided="true" name="Exit" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

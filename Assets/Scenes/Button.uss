@@ -1,0 +1,29 @@
+.button {
+    padding-top: 10px;
+    padding-right: 12px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    -unity-font-definition: url('project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&guid=8a2b9e2a607dd2143b58c44bc32410b4&type=3#Electronic Highway Sign');
+    font-size: 40px;
+    background-color: rgb(78, 100, 195);
+    border-left-color: rgba(139, 146, 202, 0);
+    border-right-color: rgba(139, 146, 202, 0);
+    border-top-color: rgba(139, 146, 202, 0);
+    border-bottom-color: rgba(139, 146, 202, 0);
+    color: rgb(205, 201, 255);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    width: 200px;
+    height: 70px;
+    -unity-font-style: bold;
+}
