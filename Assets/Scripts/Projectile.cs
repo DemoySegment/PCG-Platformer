@@ -150,18 +150,27 @@ public class Projectile : MonoBehaviour
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0); //Just add spread to last direction
 
         //Instantiate bullet/projectile
-        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
-        //Rotate bullet to shoot direction
-        currentBullet.transform.forward = directionWithSpread.normalized;
+        if(bullet != null)
+        {
+            GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
+                                                                                                       //Rotate bullet to shoot direction
+            currentBullet.transform.forward = directionWithSpread.normalized;
 
-        //Add forces to bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-        currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+            //Add forces to bullet
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+            currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+
+        }
 
         //Instantiate muzzle flash, if you have one
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
-        audioSource.PlayOneShot(audioSource.clip);
+        
+        if(audioSource!= null)
+        {
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+        
 
         bulletsLeft--;
         bulletsShot++;
@@ -172,8 +181,12 @@ public class Projectile : MonoBehaviour
             Invoke(nameof(ResetShot), timeBetweenShooting);
             allowInvoke = false;
 
-            //Add recoil to player (should only be called once)
-            playerRb.AddForce(-directionWithSpread.normalized * recoilForce, ForceMode.Impulse);
+            if(playerRb!= null)
+            {
+                //Add recoil to player (should only be called once)
+                playerRb.AddForce(-directionWithSpread.normalized * recoilForce, ForceMode.Impulse);
+            }
+
         }
 
         //if more than one bulletsPerTap make sure to repeat shoot function

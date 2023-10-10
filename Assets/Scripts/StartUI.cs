@@ -11,8 +11,8 @@ public class StartUI : MonoBehaviour
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
-        Button start = root.Q<Button>("Start");
-        Button exit = root.Q<Button>("Exit");
+        UnityEngine.UIElements.Button start = root.Q<UnityEngine.UIElements.Button>("Start");
+        UnityEngine.UIElements.Button exit = root.Q<UnityEngine.UIElements.Button>("Exit");
 
         start.clicked += () => SceneManager.LoadScene("Main");
         exit.clicked += () => Application.Quit();
