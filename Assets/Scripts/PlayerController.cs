@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -102,8 +104,10 @@ public class PlayerController : MonoBehaviour
         }
 
         lastPosition = gameObject.transform.position;
-
-
+    
+        if(PublicVars.score >= 100){
+            SceneManager.LoadScene("WinScreen");
+        }
     }
 
   

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class FloorDetection : MonoBehaviour
 {
     public bool gameOverTrigger;
     public Material lava;
     public Renderer _Rdr;
+    
 
     void Start(){
         _Rdr = GetComponent<Renderer>();
@@ -19,6 +22,7 @@ public class FloorDetection : MonoBehaviour
             if (gameOverTrigger)
             {
                 Debug.Log("Game Over");
+                SceneManager.LoadScene("LoseScreen");
 
             }
         }
