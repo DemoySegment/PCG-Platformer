@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
     //Animation 
     public Animator animator;
 
-
+    public AudioSource audioSource;
 
 
 
@@ -96,13 +96,11 @@ public class Projectile : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
-            //transform.SetPositionAndRotation(nonAimingPosition.position, nonAimingPosition.rotation);
             nonAim = true;
             aim = false;
         }
        else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            //transform.SetPositionAndRotation(aimingPosition.position, aimingPosition.rotation);
             aim=true;
             nonAim = false;
 
@@ -163,6 +161,7 @@ public class Projectile : MonoBehaviour
         //Instantiate muzzle flash, if you have one
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        audioSource.PlayOneShot(audioSource.clip);
 
         bulletsLeft--;
         bulletsShot++;

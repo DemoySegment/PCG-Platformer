@@ -36,7 +36,6 @@ public class PlatTypes : MonoBehaviour
         var _Rdr = GetComponent<Renderer>();
         //type = Random.Range(1,5);
 
-        Debug.Log("TYPE: " + type);
         if(type == 1){
             _Rdr.material = type1;
         }
@@ -62,18 +61,18 @@ public class PlatTypes : MonoBehaviour
                // print("hit");
             }
             if(type == 2){
-                print("ReverseGrav");
+                //print("ReverseGrav");
                 StartCoroutine(RevGrav());
             }
             if(type == 3){
-                print("SpawnEnemy");
+                //print("SpawnEnemy");
             }
             if(type == 4){
                // print("Horizontal");
                 //play.transform.parent.parent = transform;
             }
             if(type == 5){
-                print("Vertical");
+                //print("Vertical");
                 //other.gameObject.transform.parent.parent = transform;
             }
             
